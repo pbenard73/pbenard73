@@ -1,0 +1,25 @@
+.identity {
+    .top {
+        display: flex;
+        align-items:center;
+        img {
+            height: 80px;
+        }
+        h2 {
+            margin: 0px;
+            margin-left: 30px;
+        font-size: 32px;
+        }
+
+	~ div {
+		margin-top: 10px;
+	}
+    }
+
+    .position{
+    	height: 300px;
+	.leaflet-tile-pane{
+	       filter: grayscale(1);
+       }
+    }
+}
