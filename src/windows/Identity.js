@@ -20,7 +20,7 @@ import "./../styles/Identity.scss"
 class Identity extends React.Component {
     render() {
         const placeIcon = new icon({
-            iconUrl: "/marker.png",
+            iconUrl: "/cv/marker.png",
             iconAnchor: [22.5, 45],
             iconSize: [45, 45],
         })
@@ -28,7 +28,7 @@ class Identity extends React.Component {
         return (
             <div className='identity'>
                 <div className='top'>
-                    <img src='/photo.png' alt='BENARD Patrick photo' width='70px' height='auto' />
+                    <img src='/cv/photo.png' alt='BENARD Patrick photo' width='70px' height='auto' />
                     <h2>BENARD Patrick</h2>
                 </div>
 
