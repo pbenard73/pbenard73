@@ -16,14 +16,16 @@ class Main extends React.Component {
     render() {
         const dashboard = <Dashboard />
 
+	const mobileClass = window.orientation !== undefined ? 'nodrag' : ''
+
         const decorator = props => (
-            <div className={`window`} style={props.style}>
+            <div className={`window ${mobileClass}`} style={props.style}>
                 <div className='decorator'>
                     <span className='title'>{this.trans(props.data.title)}</span>
                     {props.actions}
-                    <span className='decorator_minimize' onClick={() => props.minimize(props.data.uuid)} />
-                    {props.resizable === false ? null : <span className='decorator_toggle' onClick={props.toggle}></span>}
-                    <span className='decorator_close' onClick={props.onClose}></span>
+                    <span className='decorator_minimize nodrag' onClick={() => props.minimize(props.data.uuid)} />
+                    {props.resizable === false ? null : <span className='decorator_toggle nodrag' onClick={props.toggle}></span>}
+                    <span className='decorator_close nodrag' onClick={props.onClose}></span>
                 </div>
                 <div className='window_content'>{props.children}</div>
             </div>

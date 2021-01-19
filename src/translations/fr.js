@@ -33,6 +33,8 @@ const messages = {
     identity_locales: "🇫🇷 Français (natif) - 🇬🇧 Anglais (technique) - 🇮🇹 Italien (notions)",
     identity_family: "Célibataire",
     identity_pets: "1 Chien 1 Chat",
+
+    better_on_desktop: "Profitez d'une expérience plus complète sur la version desktop",
 }
 
 export default messages

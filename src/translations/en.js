@@ -15,13 +15,13 @@ const messages = {
     web_developper: "Web Developper",
     software_developper: "Software Developper",
 
-
-
     identity_age: "1983/10/17 - 37 yo",
     identity_place: "Yenne, Savoie - France",
     identity_locales: "🇫🇷 French (native) - 🇬🇧 English (technical) - 🇮🇹 Italian (learning)",
     identity_family: "Single",
-    identity_pets: "1 Dog 1 Cat",	
+    identity_pets: "1 Dog 1 Cat",
+
+    better_on_desktop: "Enjoy a better experience on desktop version",
 }
 
 export default messages

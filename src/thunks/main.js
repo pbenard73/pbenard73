@@ -44,6 +44,10 @@ const thunks = {
 
                 dispatch("setOrder", order)
             }
+
+            if (order.length > 0) {
+                dispatch("setActive", order[order.length - 1])
+            }
         }
     },
 }

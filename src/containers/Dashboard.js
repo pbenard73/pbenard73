@@ -68,6 +68,8 @@ class Dashboard extends React.Component {
     }
 
     render() {
+	const isMobile = window.orientation !== undefined
+
         return (
             <div className='dashboard'>
                 <AppBar position='fixed'>
@@ -97,6 +99,9 @@ class Dashboard extends React.Component {
 
                     <Icon onClick={this.openStack} icon={<StarsIcon />} text={this.trans("title_stack")} />
                     <Icon onClick={this.openHobby} icon={<FavoriteIcon />} text={this.trans("title_hobby")} />
+
+			{isMobile === false ? null : (<div className="desktop_better">{this.trans('better_on_desktop')}</div>)}
+
                 </div>
                 {this.renderMenuLocale()}
             </div>
