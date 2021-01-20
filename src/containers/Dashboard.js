@@ -35,6 +35,7 @@ class Dashboard extends React.Component {
         const map = {
             fr: "🇫🇷",
             en: "🇬🇧",
+	    it: "🇮🇹",
         }
 
         return map[locale] || locale
@@ -52,7 +53,7 @@ class Dashboard extends React.Component {
 
         return (
             <Menu onClose={() => this.setState({ menuLocale: null })} open={true} anchorEl={this.state.menuLocale}>
-                {["fr", "en"].map(locale => {
+                {["fr", "en", "it"].map(locale => {
                     if (locale === this.props.locale) {
                         return null
                     }
@@ -68,7 +69,7 @@ class Dashboard extends React.Component {
     }
 
     render() {
-	const isMobile = window.orientation !== undefined
+        const isMobile = window.orientation !== undefined
 
         return (
             <div className='dashboard'>
@@ -81,7 +82,7 @@ class Dashboard extends React.Component {
                             <Button onClick={e => this.setState({ menuLocale: e.target })}>
                                 {this.getLocale(this.props.locale)}
                             </Button>
-                            <IconButton component='a' target='_blank' href='http:/ta/mere'>
+                            <IconButton component='a' target='_blank' href='https://github.com/pbenard73/cv'>
                                 <GitHubIcon />
                             </IconButton>
                         </div>
@@ -100,8 +101,7 @@ class Dashboard extends React.Component {
                     <Icon onClick={this.openStack} icon={<StarsIcon />} text={this.trans("title_stack")} />
                     <Icon onClick={this.openHobby} icon={<FavoriteIcon />} text={this.trans("title_hobby")} />
 
-			{isMobile === false ? null : (<div className="desktop_better">{this.trans('better_on_desktop')}</div>)}
-
+                    {isMobile === false ? null : <div className='desktop_better'>{this.trans("better_on_desktop")}</div>}
                 </div>
                 {this.renderMenuLocale()}
             </div>

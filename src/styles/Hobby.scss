@@ -1,0 +1,22 @@
+.hobbies {
+    > div {
+        padding: 15px;
+        &:nth-child(even) {
+            background: rgba(10, 9, 14, 0.3);
+        }
+
+        > div:first-child {
+            display: flex;
+            align-items: center;
+	    span {
+	    	margin-left: 10px;
+		font-weight: 400;
+		font-size: 18px;
+	    }
+        }
+        > div:last-child {
+		margin-top: 10px;
+		font-size: 14px;
+        }
+    }
+}

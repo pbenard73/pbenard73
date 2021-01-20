@@ -26,17 +26,14 @@ const thunks = {
             const windows = { ...state.windows }
             const order = [...state.order]
 
-            console.log("uuid", uuid)
             if (windows[uuid] === undefined) {
                 return
             }
 
             const index = order.indexOf(uuid)
 
-            windows[uuid] = undefined
             delete windows[uuid]
 
-            console.log(windows)
             dispatch("setWindows", windows)
 
             if (index !== -1) {

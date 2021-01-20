@@ -4,7 +4,7 @@ import OpenContact from "./../partials/OpenContact"
 import hoc from "./../hocs/main"
 
 import IconButton from "@material-ui/core/IconButton"
-import { MapContainer, Icon, TileLayer, Marker, Popup } from "react-leaflet"
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"
 import { icon } from "leaflet"
 
 import ContactMailIcon from "@material-ui/icons/ContactMail"
@@ -28,7 +28,7 @@ class Identity extends React.Component {
         return (
             <div className='identity'>
                 <div className='top'>
-                    <img src='/cv/photo.png' alt='BENARD Patrick photo' width='70px' height='auto' />
+                    <img src='/cv/photo.png' alt='BENARD Patrick' width='70px' height='auto' />
                     <h2>BENARD Patrick</h2>
                 </div>
 

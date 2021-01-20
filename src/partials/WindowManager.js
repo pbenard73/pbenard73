@@ -13,6 +13,10 @@ const manager = {
             uuid: "identity",
             title: "title_identity",
             component: <Identity />,
+            options: {
+                minSize: [300, 100],
+                size: [600, 680],
+            },
         }
 
         this.props.addWindow(data)
@@ -23,7 +27,8 @@ const manager = {
             title: "title_jobs",
             component: <Jobs />,
             options: {
-                minSize: [600, 400],
+                minSize: [300, 100],
+                size: [600, 400],
             },
         }
 
@@ -36,7 +41,8 @@ const manager = {
             title: "title_experience",
             component: <Experience />,
             options: {
-                minSize: [665, 350],
+                size: [665, 350],
+                minSize: [300, 100],
             },
         }
 
@@ -49,7 +55,8 @@ const manager = {
             title: "title_stack",
             component: <Stack />,
             options: {
-                minSize: [930, 350],
+                minSize: [300, 100],
+                size: [930, 350],
             },
         }
 
@@ -58,9 +65,13 @@ const manager = {
 
     openHobbyBindThis() {
         const data = {
-            uuid: "title_hobby",
-            title: "Hobby",
+            uuid: "hobby",
+            title: "title_hobby",
             component: <Hobby />,
+            options: {
+                minSize: [300, 100],
+                size: [580, 400],
+            },
         }
 
         this.props.addWindow(data)

@@ -1,7 +1,7 @@
 import './../styles/Icon.scss'
 
 const Icon = props => {
-    const picture = props.icon !== undefined ? props.icon : <img src={props.image} />
+    const picture = props.icon !== undefined ? props.icon : <img src={props.image} alt={props.text}/>
 
     return (
         <div className='icon' onClick={props.onClick}>

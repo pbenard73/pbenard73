@@ -4,6 +4,8 @@ import hoc from "./../hocs/main"
 
 import Expe from "./../components/Expe"
 
+import './../styles/Experience.scss'
+
 class Experience extends React.Component {
     render() {
         return (
@@ -14,6 +16,7 @@ class Experience extends React.Component {
                     date={this.trans("job_bespoon_period")}
                     place={"Le Bourget du Lac - France"}
                     content={this.trans("job_bespoon")}
+                    stack={['node', 'react', 'express', 'sqlite', 'socket', 'docker', 'vim', 'sass']}
                 />
 
                 <Expe
@@ -22,6 +25,7 @@ class Experience extends React.Component {
                     date={this.trans("job_enigmatic_period")}
                     place={"Grenoble - France"}
                     content={this.trans("job_enigmatic")}
+                    stack={['symfony', 'mysql', 'jquery', 'phpstorm', 'sass']}
                 />
 
                 <Expe
@@ -30,6 +34,7 @@ class Experience extends React.Component {
                     date={this.trans("job_eliberty_period")}
                     place={"Le Bourget du Lac - France"}
                     content={this.trans("job_eliberty")}
+                    stack={['symfony', 'pg', 'jquery', 'redis', 'phpstorm', 'less']}
                 />
 
                 <Expe
@@ -38,6 +43,7 @@ class Experience extends React.Component {
                     date={this.trans("job_accen_period")}
                     place={"Lyon - Saint Priest - France"}
                     content={this.trans("job_accen")}
+                    stack={['filemaker']}
                 />
             </div>
         )

@@ -5,18 +5,14 @@ import hoc from "./../hocs/main"
 import Dashboard from "./Dashboard"
 
 class Main extends React.Component {
-	constructor(props) {
-		super(props)
-	}
-
-	setActiveBindThis(uuid) {
-		this.props.setActive(uuid)
-	}
+    setActiveBindThis(uuid) {
+        this.props.setActive(uuid)
+    }
 
     render() {
         const dashboard = <Dashboard />
 
-	const mobileClass = window.orientation !== undefined ? 'nodrag' : ''
+        const mobileClass = window.orientation !== undefined ? "nodrag" : ""
 
         const decorator = props => (
             <div className={`window ${mobileClass}`} style={props.style}>
@@ -24,7 +20,9 @@ class Main extends React.Component {
                     <span className='title'>{this.trans(props.data.title)}</span>
                     {props.actions}
                     <span className='decorator_minimize nodrag' onClick={() => props.minimize(props.data.uuid)} />
-                    {props.resizable === false ? null : <span className='decorator_toggle nodrag' onClick={props.toggle}></span>}
+                    {props.resizable === false ? null : (
+                        <span className='decorator_toggle nodrag' onClick={props.toggle}></span>
+                    )}
                     <span className='decorator_close nodrag' onClick={props.onClose}></span>
                 </div>
                 <div className='window_content'>{props.children}</div>
