@@ -1,7 +1,7 @@
 - 👋 Hi, I’m @pbenard73
 - 👀 I’m interested in something you don't care
 - 🌱 I’m currently learning to die slowly
-- 💞️ I’m looking to collaborate on ntohing
+- 💞️ I’m looking to collaborate on nothing
 - 📫 How to reach me : Just cry
 
 <!---
