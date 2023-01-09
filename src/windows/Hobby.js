@@ -1,5 +1,4 @@
 import React from "react"
-import hoc from "./../hocs/main"
 import ExploreIcon from "@material-ui/icons/Explore"
 import SportsEsportsIcon from "@material-ui/icons/SportsEsports"
 import CodeIcon from "@material-ui/icons/Code"
@@ -9,33 +8,61 @@ import {ReactComponent as Gem} from './../svg/gem.svg';
 
 import Hobby from "./../components/Hobby"
 
-import './../styles/Hobby.scss'
+import styled from "styled-components"
+import { useIntl } from "react-intl"
 
-class Hobbies extends React.Component {
-    render() {
-        const map = {
-            rando: <NaturePeopleIcon />,
-            explore: <ExploreIcon />,
-            detector: <img src="/cv/hobby/detection.png" alt="detection" />,
-            gaming: <SportsEsportsIcon />,
-            coding: <CodeIcon />,
-            reading: <LocalLibraryIcon />,
-            jewelry: <Gem className="MuiSvgIcon-root"/>,
+const HobbiesWrapper = styled.div`
+    > div {
+        padding: 15px;
+        &:nth-child(even) {
+            background: rgba(10, 9, 14, 0.3);
         }
 
-        return (
-            <div className="hobbies">
-                {Object.keys(map).map(hobby => (
-                    <Hobby
-                        key={hobby}
-                        icon={map[hobby]}
-                        title={this.trans(`hobby_${hobby}`)}
-                        content={this.trans(`hobby_${hobby}_content`)}
-                    />
-                ))}
-            </div>
-        )
+        > div:first-child {
+            display: flex;
+            align-items: center;
+            span {
+                margin-left: 10px;
+                font-weight: 400;
+                font-size: 18px;
+            }
+        }
+        > div:last-child {
+            margin-top: 10px;
+            font-size: 14px;
+        }
     }
+`
+
+const Hobbies = () => {
+    const intl = useIntl()
+
+    const trans = (id, values = {}) => {
+        return intl.formatMessage({ id }, values)
+    }
+
+    const map = {
+        rando: <NaturePeopleIcon />,
+        explore: <ExploreIcon />,
+        detector: <img src="/cv/hobby/detection.png" alt="detection" />,
+        gaming: <SportsEsportsIcon />,
+        coding: <CodeIcon />,
+        reading: <LocalLibraryIcon />,
+        jewelry: <Gem className="MuiSvgIcon-root"/>,
+    }
+    
+    return (
+        <HobbiesWrapper>
+            {Object.keys(map).map(hobby => (
+                <Hobby
+                    key={hobby}
+                    icon={map[hobby]}
+                    title={trans(`hobby_${hobby}`)}
+                    content={trans(`hobby_${hobby}_content`)}
+                />
+            ))}
+        </HobbiesWrapper>
+    )
 }
 
-export default hoc()(Hobbies)
+export default Hobbies

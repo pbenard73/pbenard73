@@ -3,12 +3,27 @@ import Experience from "./../windows/Experience"
 import Jobs from "./../windows/Jobs"
 import Stack from "./../windows/Stack"
 import Hobby from "./../windows/Hobby"
+import Contact from "./../windows/Contact"
+import { useApp } from "../redux/appSlice"
 
-import contact from "./OpenContact"
+const useWindowManager = () => {
+    const app = useApp()
 
-const manager = {
-    ...contact,
-    openIdentityBindThis() {
+    return {
+        openContact() {
+            const data = {
+                uuid: "contact",
+                title: "title_contact",
+                component: <Contact />,
+                options: {
+                    resizable: false,
+                    size: [300, 241],
+                },
+            }
+    
+            app.addWindow(data)
+        },
+    openIdentity() {
         const data = {
             uuid: "identity",
             title: "title_identity",
@@ -19,9 +34,9 @@ const manager = {
             },
         }
 
-        this.props.addWindow(data)
+        app.addWindow(data)
     },
-    openJobsBindThis() {
+    openJobs() {
         const data = {
             uuid: "jobs",
             title: "title_jobs",
@@ -32,10 +47,10 @@ const manager = {
             },
         }
 
-        this.props.addWindow(data)
+        app.addWindow(data)
     },
 
-    openExperienceBindThis() {
+    openExperience() {
         const data = {
             uuid: "xp",
             title: "title_experience",
@@ -46,10 +61,10 @@ const manager = {
             },
         }
 
-        this.props.addWindow(data)
+        app.addWindow(data)
     },
 
-    openStackBindThis() {
+    openStack() {
         const data = {
             uuid: "stack",
             title: "title_stack",
@@ -60,10 +75,10 @@ const manager = {
             },
         }
 
-        this.props.addWindow(data)
+        app.addWindow(data)
     },
 
-    openHobbyBindThis() {
+    openHobby() {
         const data = {
             uuid: "hobby",
             title: "title_hobby",
@@ -74,8 +89,9 @@ const manager = {
             },
         }
 
-        this.props.addWindow(data)
+        app.addWindow(data)
     },
 }
+}
 
-export default manager
+export default useWindowManager

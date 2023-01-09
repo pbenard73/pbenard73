@@ -14,7 +14,7 @@ const messages = {
     hobby_rando_content: "Nature hikes, mountains, forests ...",
     hobby_reading: "Reading",
     hobby_reading_content: "Fantasy, science-fiction, litterature...",
-    identity_age: "1983/10/17 - 37 yo",
+    identity_age: "1983/10/17 - {age} yo",
     identity_family: "Single",
     identity_locales: "🇫🇷 French (native) - 🇬🇧 English (technical) - 🇮🇹 Italian (learning)",
     identity_pets: "1 Dog 1 Cat",

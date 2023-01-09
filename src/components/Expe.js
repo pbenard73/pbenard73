@@ -1,39 +1,70 @@
 import React from "react"
 import { Respo } from "react-respo"
 
-import hoc from "./../hocs/main"
 import getPic from "./../helpers/stack"
+import styled from "styled-components"
+import { useIntl } from "react-intl"
 
-class Expe extends React.Component {
-    render() {
+const ExpeStack = styled.div`
+    display: flex;
+    justify-content: flex-end;
+	flex-wrap: wrap;
+    > div {
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+        max-width: 60px;
+	    align-items: center;
+
+        img {
+            margin-top: auto;
+            height: auto;
+            width: 100%;
+            margin-bottom: 5px;
+	    filter: drop-shadow(5px 5px 4px #131313);
+        }
+        span {
+            font-size: 10px;
+            margin-top: auto;
+        }
+    }
+`
+
+const Expe = ({content, ...props}) =>  {
+    const intl = useIntl()
+
+    const trans = (id, values = {}) => {
+        return intl.formatMessage({ id }, values)
+    }
+    
         return (
             <div className='experience' style={{ marginBottom: "50px" }}>
-                <h2 style={{ marginTop: "0px" }}>{this.props.society}</h2>
+                <h2 style={{ marginTop: "0px" }}>{props.society}</h2>
                 <Respo container md={600} lg={900}>
                     <Respo md={4} lg={3}>
-                        <p>{this.props.jobname}</p>
-                        <p>{this.props.date}</p>
-                        <p>{this.props.place}</p>
+                        <p>{props.jobname}</p>
+                        <p>{props.date}</p>
+                        <p>{props.place}</p>
                     </Respo>
                     <Respo md={8} lg={9}>
-                        <div dangerouslySetInnerHTML={{ __html: this.props.content }} style={{ marginBottom: "10px" }} />
+                        <div dangerouslySetInnerHTML={{ __html: content }} style={{ marginBottom: "10px" }} />
                     </Respo>
                 </Respo>
-                <div className='expe_stack'>
-                    {this.props.stack.map(techno => {
+                <ExpeStack>
+                    {props.stack.map(techno => {
                         const src = getPic(techno)
-                        const label = this.trans(`techno_${techno}`)
+                        const label = trans(`techno_${techno}`)
 
                         return (
                             <div>
                                 {src === null ? null : <img src={`/cv/techno/${src}`} alt={label} />}
-                                <span>{this.trans(`techno_${techno}`)}</span>
+                                <span>{trans(`techno_${techno}`)}</span>
                             </div>
                         )
                     })}
-                </div>
+                </ExpeStack>
             </div>
         )
-    }
+    
 }
-export default hoc()(Expe)
+export default Expe

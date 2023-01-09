@@ -1,11 +1,10 @@
 import React from "react"
-import OpenContact from "./../partials/OpenContact"
 
-import hoc from "./../hocs/main"
 
 import IconButton from "@material-ui/core/IconButton"
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"
 import { icon } from "leaflet"
+import dobToAge from 'dob-to-age'
 
 import ContactMailIcon from "@material-ui/icons/ContactMail"
 
@@ -15,49 +14,97 @@ import PersonPinCircleIcon from "@material-ui/icons/PersonPinCircle"
 import PeopleIcon from "@material-ui/icons/People"
 import LanguageIcon from "@material-ui/icons/Language"
 
-import "./../styles/Identity.scss"
+import styled from "styled-components"
+import { useIntl } from "react-intl"
+import useWindowManager from "../partials/WindowManager"
 
-class Identity extends React.Component {
-    render() {
-        const placeIcon = new icon({
-            iconUrl: "/cv/marker.png",
-            iconAnchor: [22.5, 45],
-            iconSize: [45, 45],
-        })
+const IdentityWrapper = styled.div`
+.top {
+    display: flex;
+    align-items: center;
+    img {
+        height: 80px;
+    }
+    h2 {
+        margin: 0px;
+        margin-left: 30px;
+        font-size: 32px;
+    }
 
+    ~ div {
+        margin-top: 10px;
+        &:not(:last-child) {
+            display: flex;
+            align-items: center;
+            > svg {
+                margin-right: 15px;
+            }
+            > button {
+                margin-left: -11px;
+                svg {
+                    color: #c3c3c3;
+                    animation: anim 2s linear infinite alternate-reverse;
+                }
+            }
+        }
+    }
+}
+
+.position {
+    height: 300px;
+    .leaflet-tile-pane {
+        filter: grayscale(1);
+    }
+}
+`
+
+const placeIcon = new icon({
+    iconUrl: "/cv/marker.png",
+    iconAnchor: [22.5, 45],
+    iconSize: [45, 45],
+})
+
+const Identity = () => {
+    const intl = useIntl()
+    const app = useWindowManager()
+
+    const trans = (id, values = {}) => {
+        return intl.formatMessage({ id }, values)
+    }
+    
         return (
-            <div className='identity'>
+            <IdentityWrapper>
                 <div className='top'>
                     <img src='/cv/photo.png' alt='BENARD Patrick' width='70px' height='auto' />
                     <h2>BENARD Patrick</h2>
                 </div>
 
                 <div>
-                    <EmojiPeopleIcon /> {this.trans("identity_age")}
+                    <EmojiPeopleIcon /> {trans("identity_age", {age: dobToAge('1983-10-17')})}
                 </div>
 
                 <div>
-                    <PersonPinCircleIcon /> {this.trans("identity_place")}
+                    <PersonPinCircleIcon /> {trans("identity_place")}
                 </div>
 
                 <div>
-                    <LanguageIcon /> {this.trans("identity_locales")}
+                    <LanguageIcon /> {trans("identity_locales")}
                 </div>
 
                 <div>
-                    <PeopleIcon /> {this.trans("identity_family")}
+                    <PeopleIcon /> {trans("identity_family")}
                 </div>
 
                 <div>
-                    <PetsIcon /> {this.trans("identity_pets")}
+                    <PetsIcon /> {trans("identity_pets")}
                 </div>
 
                 <div>
-                    <IconButton onClick={this.openContact}>
+                    <IconButton onClick={app.openContact}>
                         <ContactMailIcon />
                     </IconButton>
 
-                    {this.trans("title_contact")}
+                    {trans("title_contact")}
                 </div>
 
                 <div>
@@ -72,15 +119,13 @@ class Identity extends React.Component {
                             url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
                         />
                         <Marker icon={placeIcon} position={[45.70388095606664, 5.758261107579773]}>
-                            <Popup>
-                                A pretty CSS3 popup. <br /> Easily customizable.
-                            </Popup>
+
                         </Marker>
                     </MapContainer>
                 </div>
-            </div>
+            </IdentityWrapper>
         )
-    }
+    
 }
 
-export default hoc()(Identity, OpenContact)
+export default Identity

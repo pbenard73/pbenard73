@@ -1,8 +1,5 @@
 import React from "react"
 
-import hoc from "./../hocs/main"
-import Manager from "./../partials/WindowManager"
-
 import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
 import Typography from "@material-ui/core/Typography"
@@ -21,92 +18,123 @@ import StarsIcon from "@material-ui/icons/Stars"
 import Icon from "./../components/Icon"
 import GitHubIcon from "@material-ui/icons/GitHub"
 
-import "./../styles/Dashboard.scss"
+import styled from "styled-components"
+import { useApp } from "../redux/appSlice"
+import { useSelector } from "react-redux"
+import { useIntl } from "react-intl"
+import { useState } from "react"
+import useWindowManager from "../partials/WindowManager"
 
-class Dashboard extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            menuLocale: null,
-        }
+const DashboardWrapper = styled.div`
+    height: 100vh;
+    .panel {
+        padding: 15px;
+        padding-top: 65px;
+        height: calc(100vh - 80px);
+        display: flex;
+        flex-direction: column;
+        align-items: baseline;
+    }
+`
+
+const TopBar = styled(Toolbar)`
+    background: #0f0f17;
+    box-shadow: 0 1px 4px #8c7972;
+    min-height: 50px;
+    svg {
+        fill: #dcc9c2;
     }
 
-    getLocale(locale) {
-        const map = {
-            fr: "🇫🇷",
-            en: "🇬🇧",
-	    it: "🇮🇹",
+    .top_title {
+        font-weight: 600;
+        color: #dcc9c2;
+        span {
+            transform: rotate(-14deg) translateY(8px) translateX(-34px);
+            display: inline-block;
+            text-shadow: 0px 0px 16px #cdbdb6, 0px 0px 2px #424860;
+            font-size: 20px;
+            color: #0b0a0f;
         }
-
-        return map[locale] || locale
+    }
+`
+const getLocale = (locale) => {
+    const map = {
+        fr: "🇫🇷",
+        en: "🇬🇧",
+        it: "🇮🇹",
     }
 
-    setLocaleBindThis(locale) {
-        this.props.setLocale(locale)
-        this.setState({ menuLocale: null })
+    return map[locale] || locale
+}
+
+const Dashboard = () => {
+    const [menuLocale, setMenuLocale] = useState(null)
+    const locale = useSelector(state => state.locale)
+    const app = useApp()
+    const windowManager = useWindowManager()
+    const intl = useIntl()
+
+    const trans = (id, values = {}) => {
+        return intl.formatMessage({ id }, values)
     }
 
-    renderMenuLocale() {
-        if (this.state.menuLocale === null) {
-            return null
-        }
-
-        return (
-            <Menu onClose={() => this.setState({ menuLocale: null })} open={true} anchorEl={this.state.menuLocale}>
-                {["fr", "en", "it"].map(locale => {
-                    if (locale === this.props.locale) {
+    const renderMenuLocale = menuLocale &&  (
+            <Menu onClose={() => setMenuLocale(null)} open={true} anchorEl={menuLocale}>
+                {["fr", "en", "it"].map(aLocale => {
+                    if (aLocale === locale) {
                         return null
                     }
 
                     return (
-                        <MenuItem key={locale} onClick={() => this.setLocale(locale)}>
-                            {this.getLocale(locale)}
+                        <MenuItem key={aLocale} onClick={() => {
+                            app.setLocale(aLocale)
+                            setMenuLocale(null)
+                        }}>
+                            {getLocale(aLocale)}
                         </MenuItem>
                     )
                 })}
             </Menu>
-        )
-    }
+    )
 
-    render() {
-        const isMobile = window.orientation !== undefined
-
+    const isMobile = window.orientation !== undefined
+    
         return (
-            <div className='dashboard'>
+            <DashboardWrapper className='dashboard'>
                 <AppBar position='fixed'>
-                    <Toolbar id='topbar'>
+                    <TopBar id="topbar">
                         <Typography className='top_title' variant='h6'>
                             BENARD Patrick <span>Web dev</span>
                         </Typography>
                         <div style={{ marginLeft: "auto" }}>
-                            <Button onClick={e => this.setState({ menuLocale: e.target })}>
-                                {this.getLocale(this.props.locale)}
+                            <Button onClick={e => setMenuLocale(e.target)}>
+                                {getLocale(locale)}
                             </Button>
                             <IconButton component='a' target='_blank' href='https://github.com/pbenard73/cv'>
                                 <GitHubIcon />
                             </IconButton>
                         </div>
-                    </Toolbar>
+                    </TopBar>
                 </AppBar>
                 <div className='panel'>
                     <Icon
-                        onClick={this.openIdentity}
+                        onClick={windowManager.openIdentity}
                         icon={<PermContactCalendarIcon />}
-                        text={this.trans("title_identity")}
+                        text={trans("title_identity")}
                     />
-                    <Icon onClick={this.openContact} icon={<ContactMailIcon />} text={this.trans("title_contact")} />
-                    <Icon onClick={this.openExperience} icon={<WorkIcon />} text={this.trans("title_experience")} />
-                    <Icon onClick={this.openJobs} icon={<AdbIcon />} text={this.trans("title_jobs")} />
+                    <Icon onClick={windowManager.openContact} icon={<ContactMailIcon />} text={trans("title_contact")} />
+                    <Icon onClick={windowManager.openExperience} icon={<WorkIcon />} text={trans("title_experience")} />
+                    <Icon onClick={windowManager.openJobs} icon={<AdbIcon />} text={trans("title_jobs")} />
 
-                    <Icon onClick={this.openStack} icon={<StarsIcon />} text={this.trans("title_stack")} />
-                    <Icon onClick={this.openHobby} icon={<FavoriteIcon />} text={this.trans("title_hobby")} />
+                    <Icon onClick={windowManager.openStack} icon={<StarsIcon />} text={trans("title_stack")} />
+                    <Icon onClick={windowManager.openHobby} icon={<FavoriteIcon />} text={trans("title_hobby")} />
 
-                    {isMobile === false ? null : <div className='desktop_better'>{this.trans("better_on_desktop")}</div>}
+                    {isMobile === false ? null : <div className='desktop_better'>{trans("better_on_desktop")}</div>}
                 </div>
-                {this.renderMenuLocale()}
-            </div>
+                {renderMenuLocale}
+            </DashboardWrapper>
         )
-    }
+    
 }
 
-export default hoc()(Dashboard, Manager)
+export default Dashboard

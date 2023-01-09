@@ -1,23 +1,28 @@
 import React from "react"
 
-import { Windows } from "react-windows-dashboard"
-import hoc from "./../hocs/main"
+import {Windows} from 'react-windows-dashboard'
 import Dashboard from "./Dashboard"
+import { useApp } from "../redux/appSlice"
+import { useSelector } from "react-redux"
+import { useIntl } from "react-intl"
 
-class Main extends React.Component {
-    setActiveBindThis(uuid) {
-        this.props.setActive(uuid)
+const Main = () => {
+    const intl = useIntl()
+
+    const trans = (id, values = {}) => {
+        return intl.formatMessage({ id }, values)
     }
+    const app= useApp()
+    const {windows, active} = useSelector(state => ({active: state.active, windows: state.windows}))
 
-    render() {
         const dashboard = <Dashboard />
 
         const mobileClass = window.orientation !== undefined ? "nodrag" : ""
 
-        const decorator = props => (
+        const Decorator = props => (
             <div className={`window ${mobileClass}`} style={props.style}>
                 <div className='decorator'>
-                    <span className='title'>{this.trans(props.data.title)}</span>
+                    <span className='title' style={{marginRight:'auto'}}>{trans(props.data.title)}</span>
                     {props.actions}
                     <span className='decorator_minimize nodrag' onClick={() => props.minimize(props.data.uuid)} />
                     {props.resizable === false ? null : (
@@ -31,15 +36,15 @@ class Main extends React.Component {
 
         return (
             <Windows
-                decorator={decorator}
+                decorator={Decorator}
                 dashboard={dashboard}
-                windows={this.props.windows}
-                onClose={this.props.removeWindow}
-                active={this.props.active}
-                setActive={this.setActive}
+                windows={windows}
+                onClose={app.removeWindow}
+                active={active}
+                setActive={app.setActive}
             />
         )
-    }
+    
 }
 
-export default hoc()(Main)
+export default Main

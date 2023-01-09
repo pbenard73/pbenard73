@@ -3,12 +3,17 @@ import React from "react"
 import { IntlProvider } from "react-intl"
 import Main from "./Main"
 
-import simple from "./../hocs/simple"
+import { useSelector } from "react-redux"
 
-const Translator = props => (
-    <IntlProvider messages={props.messages[props.locale]} locale={props.locale}>
+const Translator = () => {
+    const messages = useSelector(state => state.messages)
+    const locale = useSelector(state => state.locale)
+
+    return (
+    <IntlProvider messages={messages[locale]} locale={locale}>
         <Main />
     </IntlProvider>
 )
+    }
 
-export default simple()(Translator)
+export default Translator

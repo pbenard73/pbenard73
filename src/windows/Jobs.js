@@ -1,15 +1,21 @@
 import React from "react"
-import hoc from "./../hocs/main"
+
 
 import Job from "./../components/Job"
+import { useIntl } from "react-intl"
 
-class Jobs extends React.Component {
-    render() {
+const Jobs = () => {
+    const intl = useIntl()
+
+    const trans = (id, values = {}) => {
+        return intl.formatMessage({ id }, values)
+    }
+    
         return (
             <div>
                 <Job
                     title={"Reactizy"}
-                    content={this.trans("jobs_reactizy_intro")}
+                    content={trans("jobs_reactizy_intro")}
                     actions={{
                         npm: "https://www.npmjs.com/package/reactizy",
                         github: "https://github.com/pbenard73/reactizy",
@@ -18,7 +24,7 @@ class Jobs extends React.Component {
                 />
                 <Job
                     title={"React Respo"}
-                    content={this.trans("jobs_reactrespo_intro")}
+                    content={trans("jobs_reactrespo_intro")}
                     actions={{
                         npm: "https://www.npmjs.com/package/react-respo",
                         github: "https://github.com/pbenard73/react-respo",
@@ -27,7 +33,7 @@ class Jobs extends React.Component {
                 />
                 <Job
                     title={"React Windows Dashboard"}
-                    content={this.trans("jobs_reactwindowsdashboard_intro")}
+                    content={trans("jobs_reactwindowsdashboard_intro")}
                     actions={{
                         npm: "https://www.npmjs.com/package/react-windows-dashboard",
                         github: "https://github.com/pbenard73/react-windows-dashboard",
@@ -36,7 +42,7 @@ class Jobs extends React.Component {
                 />
             </div>
         )
-    }
+    
 }
 
-export default hoc()(Jobs)
+export default Jobs

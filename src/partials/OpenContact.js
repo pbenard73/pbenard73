@@ -1,7 +1,7 @@
 import Contact from "./../windows/Contact"
 
 const manager = {
-    openContactBindThis() {
+    openContact() {
         const data = {
             uuid: "contact",
             title: "title_contact",

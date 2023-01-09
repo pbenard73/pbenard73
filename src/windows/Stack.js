@@ -1,16 +1,20 @@
 import React from "react"
+import { useIntl } from "react-intl"
 
 import { Respo } from "react-respo"
 
-import hoc from "./../hocs/main"
+const Stack = () => {
+    const intl = useIntl()
 
-class Stack extends React.Component {
-    render() {
+    const trans = (id, values = {}) => {
+        return intl.formatMessage({ id }, values)
+    }
+    
         return (
             <Respo container md={450} lg={800}>
                 <Respo md={6} lg={3}>
                     <div>
-                        <h5>{this.trans("stack_front")}</h5>
+                        <h5>{trans("stack_front")}</h5>
 
                         <ul>
                             <li>CSS - SASS - LESS</li>
@@ -31,7 +35,7 @@ class Stack extends React.Component {
                 </Respo>
                 <Respo md={6} lg={3}>
                     <div>
-                        <h5>{this.trans("stack_back")}</h5>
+                        <h5>{trans("stack_back")}</h5>
 
                         <ul>
                             <li>Express JS</li>
@@ -43,7 +47,7 @@ class Stack extends React.Component {
                 </Respo>
                 <Respo md={6} lg={3}>
                     <div>
-                        <h5>{this.trans("stack_db")}</h5>
+                        <h5>{trans("stack_db")}</h5>
 
                         <ul>
                             <li>Doctrine</li>
@@ -56,7 +60,7 @@ class Stack extends React.Component {
                 </Respo>
                 <Respo md={6} lg={3}>
                     <div>
-                        <h5>{this.trans("stack_misc")}</h5>
+                        <h5>{trans("stack_misc")}</h5>
 
                         <ul>
                             <li>Docker</li>
@@ -72,7 +76,7 @@ class Stack extends React.Component {
                 </Respo>
             </Respo>
         )
-    }
+    
 }
 
-export default hoc()(Stack)
+export default Stack

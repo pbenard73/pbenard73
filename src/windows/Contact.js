@@ -3,11 +3,9 @@ import React from "react"
 import Button from "@material-ui/core/Button"
 import GitHubIcon from "@material-ui/icons/GitHub"
 import LinkedInIcon from "@material-ui/icons/LinkedIn"
-import hoc from "./../hocs/main"
 
-class Contact extends React.Component {
-    render() {
-        return (
+
+const Contact = () => (
             <div>
                 <p>
                     <Button
@@ -48,7 +46,6 @@ class Contact extends React.Component {
                 </p>
             </div>
         )
-    }
-}
+    
 
-export default hoc()(Contact)
+export default Contact
