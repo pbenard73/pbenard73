@@ -33,6 +33,7 @@ const messages = {
     jobs_reactwindowsdashboard_intro:        "Libreria che consente di creare un sito sotto forma di desktop. <br/> Questo sito è stato creato utilizzando questo strumento.",
     job_synbird_period: "Marzo 2021 - Oggi",
     job_synbird: "Sviluppo della prenotazione di appuntamenti online e gestione dei file per comunità e municipi.<br/><br/>Full stack Express React.<br/><br/> Lavoro di squadra (~5 dev), formazione di stagisti.",
+    jobs_reactaxiosapi_intro: "Libreria che facilita le chiamate Api in React", 
     software_developper: "Sviluppatore di software",
     stack_back: "Back",
     stack_db: "Database & cache",

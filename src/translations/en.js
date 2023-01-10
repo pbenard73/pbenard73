@@ -33,6 +33,7 @@ const messages = {
     jobs_reactwindowsdashboard_intro:        "This library is used in order the craete a website with a desktop windowed behaviour.<br/>This website has been created with this tool.",
     job_synbird_period: "March 2021 - Current job",
     job_synbird: "Development of online appointment booking, and file management for communities and town halls.<br/><br/>Full stack Express React.<br/><br/> Teamwork (~5 dev), training of interns.",
+    jobs_reactaxiosapi_intro: "React library to make easy api calls", 
     software_developper: "Software Developper",
     stack_back: "Back",
     stack_db: "Databases && Cache",

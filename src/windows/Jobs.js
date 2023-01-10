@@ -11,15 +11,23 @@ const Jobs = () => {
 
     return (
         <div>
-            <Job
-                title={"React Windows Dashboard"}
-                content={trans("jobs_reactwindowsdashboard_intro")}
-                actions={{
-                    npm: "https://www.npmjs.com/package/react-windows-dashboard",
-                    github: "https://github.com/pbenard73/react-windows-dashboard",
-                    home: "https://pbenard73.github.io/react-windows-dashboard/",
-                }}
-            />
+        <Job
+            title={"React Axios Api"}
+            content={trans("jobs_reactaxiosapi_intro")}
+            actions={{
+                npm: "https://www.npmjs.com/package/react-axios-api",
+                github: "https://github.com/pbenard73/react-axios-api",
+            }}
+        />
+        <Job
+            title={"React Windows Dashboard"}
+            content={trans("jobs_reactwindowsdashboard_intro")}
+            actions={{
+                npm: "https://www.npmjs.com/package/react-windows-dashboard",
+                github: "https://github.com/pbenard73/react-windows-dashboard",
+                home: "https://pbenard73.github.io/react-windows-dashboard/",
+            }}
+        />
             <Job
                 title={"React Respo"}
                 content={trans("jobs_reactrespo_intro")}
