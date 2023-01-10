@@ -15,6 +15,7 @@ const messages = {
     techno_sass: "Sass",
     techno_less: "Less",
     techno_filemaker: "Filemaker",
+    techno_vscode: "VS Code",
 
     job_link_npm: "npm",
     job_link_github: "github",

@@ -15,6 +15,7 @@ const map = {
     redis: 'redis.png',
     socket: 'socket.png',
     vim: 'vim.png',
+    vscode: 'vscode.png',
 }
 
 const getTechno = techno => (map[techno] || null)

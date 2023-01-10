@@ -10,10 +10,10 @@ const Translator = () => {
     const locale = useSelector(state => state.locale)
 
     return (
-    <IntlProvider messages={messages[locale]} locale={locale}>
-        <Main />
-    </IntlProvider>
-)
-    }
+        <IntlProvider messages={messages[locale]} locale={locale}>
+            <Main />
+        </IntlProvider>
+    )
+}
 
 export default Translator
